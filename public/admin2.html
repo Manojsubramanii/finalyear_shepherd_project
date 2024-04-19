@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Display</title>
+</head>
+<body>
+    <h1>Feedback Display</h1>
+    <table id="feedbackTable">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Feedback</th>
+            </tr>
+        </thead>
+        <tbody id="feedbackTableBody"></tbody>
+    </table>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnvSdXK6SaQzMkEx4AWVCuEmbxHM6aSSg",
+    authDomain: "finalyear-ece3f.firebaseapp.com",
+    databaseURL: "https://finalyear-ece3f-default-rtdb.firebaseio.com",
+    projectId: "finalyear-ece3f",
+    storageBucket: "finalyear-ece3f.appspot.com",
+    messagingSenderId: "852918031885",
+    appId: "1:852918031885:web:815ff21e162cbf6f9ae744",
+    measurementId: "G-MML62J6ZLN"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Reference to the feedbacks node in the database
+        const feedbacksRef = ref(getDatabase(app), 'feedbacks');
+
+        // Function to fetch feedback data and display it in table
+        onValue(feedbacksRef, function(snapshot) {
+            const feedbackTableBody = document.getElementById("feedbackTableBody");
+            feedbackTableBody.innerHTML = "";
+
+            snapshot.forEach(function(childSnapshot) {
+                const feedbackData = childSnapshot.val();
+                const category = feedbackData.category;
+                const feedback = feedbackData.feedback;
+
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${category}</td><td>${feedback}</td>`;
+                feedbackTableBody.appendChild(newRow);
+            });
+        });
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f7ff; /* Light blue background */
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #333; /* Dark text color */
+    }
+
+    #feedbackTable {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #fff; /* White background */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    }
+
+    #feedbackTable th, #feedbackTable td {
+        padding: 10px;
+        border: 1px solid #ddd; /* Light gray border */
+        text-align: left;
+    }
+
+    #feedbackTable th {
+        background-color: #77aaff; /* Light blue header background */
+        color: #fff; /* White text color */
+    }
+
+    #feedbackTable tbody tr:nth-child(even) {
+        background-color: #f2f7ff; /* Alternate row background color */
+    }
+</style>

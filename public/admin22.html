@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View</title>
+    <style>
+        /* Style for better presentation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(137, 200, 244);
+        }
+        .container {
+            width: 800px;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin View</h1>
+        <button id="fetchDataBtn">Fetch Form Submissions</button>
+        <div id="submissionTable"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnvSdXK6SaQzMkEx4AWVCuEmbxHM6aSSg",
+    authDomain: "finalyear-ece3f.firebaseapp.com",
+    databaseURL: "https://finalyear-ece3f-default-rtdb.firebaseio.com",
+    projectId: "finalyear-ece3f",
+    storageBucket: "finalyear-ece3f.appspot.com",
+    messagingSenderId: "852918031885",
+    appId: "1:852918031885:web:815ff21e162cbf6f9ae744",
+    measurementId: "G-MML62J6ZLN"
+        };
+        
+        // Initialize Firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+
+        // Function to fetch form submissions from Firebase Realtime Database
+        const fetchFormSubmissions = () => {
+            const submissionsRef = ref(getDatabase(firebaseApp), "reportForms");
+            onValue(submissionsRef, (snapshot) => {
+                const data = snapshot.val();
+                renderTable(data);
+            });
+        };
+
+        // Function to render form submissions in a table format
+        const renderTable = (data) => {
+            const submissionTable = document.getElementById("submissionTable");
+            submissionTable.innerHTML = ""; // Clear previous content
+            
+            if (!data) {
+                submissionTable.innerHTML = "<p>No form submissions available.</p>";
+                return;
+            }
+
+            const table = document.createElement("table");
+            const headerRow = table.insertRow();
+            const headers = ["Class", "Group", "Staff", "Date of Visit", "Place Visited", "Work Done", "Number of Students", "Submitted On", "Image", "Action"];
+            
+            // Create table headers
+            headers.forEach(headerText => {
+                const header = document.createElement("th");
+                header.textContent = headerText;
+                headerRow.appendChild(header);
+            });
+
+            // Create table rows
+// Create table rows
+Object.values(data).forEach(submission => {
+    const row = table.insertRow();
+    Object.entries(submission).forEach(([key, value]) => {
+        const cell = row.insertCell();
+        if (key === "imageUrl") {
+            const img = document.createElement("img");
+            img.src = value; // Set the image source to the URL
+            img.alt = "Image"; // Add alternative text for accessibility
+            img.style.maxWidth = "100px"; // Set maximum width for the image
+            img.style.maxHeight = "100px"; // Set maximum height for the image
+            const link = document.createElement("a");
+            link.href = value; // Set the link href to the image URL
+            link.target = "_blank"; // Open the link in a new tab
+            link.appendChild(img); // Append the image to the link
+            cell.appendChild(link); // Append the link to the cell
+        } else {
+            cell.textContent = value;
+        }
+    });
+    const actionCell = row.insertCell();
+    const viewBtn = document.createElement("button");
+    viewBtn.textContent = "View";
+    viewBtn.onclick = () => {
+        // Customize this functionality to suit your needs
+        alert("Customize this functionality to view the submission");
+    };
+    actionCell.appendChild(viewBtn);
+});
+         submissionTable.appendChild(table);
+        };
+
+        // Attach event listener to the fetch data button
+        document.getElementById("fetchDataBtn").addEventListener("click", fetchFormSubmissions);
+    </script>
+</body>
+</html>

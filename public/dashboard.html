@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>DASHBOARD</title>
+</head>
+<body>
+ 
+<div class="header">
+<div class="sidebar">
+ 
+   <a href="#" class="logo">
+      
+     <img src="logo.png" class="logo-img"  >
+  </a>
+   
+   <div class="profile">
+    
+   <a href="https://www.sjctni.edu/Shepherd/index.jsp?id=1&bredcom=Home%20|%20Services%20|%20Shepherd">ABOUT SHEPHERD</a>
+   </div>
+   <strong>___________________</strong>
+   <ul class="nav-links">
+    <li><a href="dashboard.html"><i class="fa fa-home" aria-hidden="true"></i><p>Dashboard</p></a></li>
+    <li><a href="info.html"><i class="fa fa-info" aria-hidden="true"></i><p>Information</p></a></li>
+    <li><a href="planform.html"><i class="fa fa-location-arrow" aria-hidden="true"></i><p>PlanForm</p></a></li>
+     <li><a href="feedback.html"><i class="fa fa-comments" aria-hidden="true"></i><p>FeedBack</p></a></li>
+   
+  
+   </ul>
+  
+   
+       
+</div>
+<div   class="bg">
+<div class="dash">
+<img src="demo4.jpg">
+</div>
+
+<div class="gig">
+  <h2>PLAN:</h2>
+  <button  onclick="direct()"> view accepted plan</button>
+  
+     
+   </div>
+   
+
+   <div class="container">
+    <div class="display"></div>
+    <div class="events-container">
+      <div class="hours-box">
+        <label>Hour Completed: <span id="hoursCompletedValue">0</span></label>
+    </div>
+    <div class="visit-box">
+        <label>Number of Visits: <span id="numVisitsValue">0</span></label>
+    </div>
+    <div class="special-visit-box">
+        <label>Special Visit: <span id="specialVisitsValue">0</span></label>
+    </div>
+    
+    <div class="events">
+      <h2>Upcoming Events</h2>
+      <ul>
+        <li><a href="#">the of Statistics - National Seminar on Statistical Applications in Recent Trends </style></a> </li>
+        <li><a href="#">Fr.Lazar's Endowment Lecture On The Decline of Reading In Modern Youth</a></li>
+        <li><a href="#">Graduation Day (For the Graduates passed out in 2021)</a></li>
+        <li><a href="#">Graduation Day (For the Graduates passed out in 2022)</a></li>
+        <li><a href="#">Department of Mathematics - MATHEMATICS OLYMPIAD 2024</a></li>
+        <li><a href="#">Department of Business Administration - National Seminar on Leveraging Artificial Intelligence in Business Operations</a></li>
+        <li><a href="#">INNOVATHON 2024 - SJC's National Level Innovation Fest</a></li>
+        <li><a href="#">Josephites Global Reunion - 2024</a></li>
+        <li><a href="#">Department of Biochemistry - HITECH 24</a></li>
+        <li><a href="#">தமிழாய்வுத்துறை - தேசிய கருத்தரங்கம் - தமிழ் இலக்கியத்தில் மேலாண்மை</a></li>
+        <li><a href="#">Department of Mathematics - National Conference on Recent Developments in Pure and Applied Mathematics (NC-RDPAM24)</a></li>
+      </ul>
+    </div>
+  
+  </div>
+  <div class="events-container">
+  <div class="event">
+    <h2>Announcement</h2>
+    <ul>
+      <li><a href="#">the of Statistics - National Seminar on Statistical Applications in Recent Trends </style></a> </li>
+      <li><a href="#">Fr.Lazar's Endowment Lecture On The Decline of Reading In Modern Youth</a></li>
+      <li><a href="#">Graduation Day (For the Graduates passed out in 2021)</a></li>
+      <li><a href="#">Graduation Day (For the Graduates passed out in 2022)</a></li>
+      <li><a href="#">Department of Mathematics - MATHEMATICS OLYMPIAD 2024</a></li>
+      <li><a href="#">Department of Business Administration - National Seminar on Leveraging Artificial Intelligence in Business Operations</a></li>
+      <li><a href="#">INNOVATHON 2024 - SJC's National Level Innovation Fest</a></li>
+      <li><a href="#">Josephites Global Reunion - 2024</a></li>
+      <li><a href="#">Department of Biochemistry - HITECH 24</a></li>
+      <li><a href="#">தமிழாய்வுத்துறை - தேசிய கருத்தரங்கம் - தமிழ் இலக்கியத்தில் மேலாண்மை</a></li>
+      <li><a href="#">Department of Mathematics - National Conference on Recent Developments in Pure and Applied Mathematics (NC-RDPAM24)</a></li>
+    </ul>
+  </div>
+    </div>
+   </div>
+
+</div>
+<div id="userIcon">
+  <img src="demo12.png" alt="User Icon" width="60" height="100" onclick="toggleOptions()">
+  <div id="optionsContainer">
+ 
+    <a href="#" class="logout" onclick="logout()">Logout</a>
+  </div>
+</div>
+
+</div>
+<footer>
+  <span><h4>sjc erp team</h4></span>
+</footer>
+</body>
+</html>
+<style>
+  
+   *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'poppins',sans-serif;
+  }
+    .bg{
+    background-color:   rgb(232, 246, 250); 
+    height: 1600px;
+  }
+  .container {
+  display: flex;
+  
+}
+footer h4{
+  text-align: centre;
+}
+
+.visit-box {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 100px;
+  text-align: left;
+  position: absolute;
+  top: -140px;
+  font-size: larger;
+ 
+  width: 290px;
+  height:80px;
+ right: -700px; /* Position the visit box on the right side */
+}
+
+.special-visit-box {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 100px;
+  text-align: left;
+  position: absolute;
+  top: -140px;
+  font-size: larger;
+  
+  width: 290px;
+  height:80px;
+right: -300px; /* Position the special visit box to the left of the visit box */
+}
+
+
+.hours-box {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 100px;
+  font-size: larger;
+  text-align: left;
+  position: absolute;
+  top: -140px;
+  left: 40px;
+  width: 290px;
+  height:80px;
+}
+
+
+  .events-container {
+  max-width: 500px;
+  margin: 70px  ;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9; /* Background color for the .events-container */
+ margin-top:320px;
+  margin-left: 300px;
+ position: relative; /* Position relative for absolute positioning of .hours-box */
+}
+
+
+
+.events {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.events h2 {
+  color: #333;
+  text-align: center;
+}
+
+.events ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.events li {
+  margin-bottom: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Adjust the padding to change the size of the box */
+}
+
+.events li a {
+  color: black;
+  text-decoration: none;
+}
+
+.events li a:hover {
+  text-decoration: underline;
+}
+
+.events li {
+  text-align: left;
+}
+
+
+.event-container {
+  max-width: 400px;
+
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9; /* Background color for the .events-container */
+ margin-top:600px;
+  margin-right: 200px;
+ position: relative; /* Position relative for absolute positioning of .hours-box */
+}
+
+
+
+.event {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.event h2 {
+  color: #333;
+  text-align: center;
+}
+
+.event ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event li {
+  margin-bottom: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Adjust the padding to change the size of the box */
+}
+
+.event li a {
+  color: black;
+  text-decoration: none;
+}
+
+.event li a:hover {
+  text-decoration: underline;
+}
+
+.event li {
+  text-align: left;
+}
+  
+
+.profile a{
+  text-decoration: none;
+}
+
+.time h3{
+  margin-right: 100px;
+}
+   .MARK{
+    margin: 100px;
+    margin-top: 300px;
+  
+   }
+   .nav-links h2{
+      
+      height:10px;
+      width: 4cm;
+      text-align: center;
+      padding: 5px;
+
+      color:black;
+      
+      
+         }
+         /*plan*/
+         .gig{
+          position: absolute;
+         }
+         .gig h2{
+        margin-left: 250px;
+        margin-top: 40px;
+           
+         }
+         .gig button{
+          margin-left: 350px;
+          margin-top: 15px;
+          height: 40px;
+          width: 200px;
+          background-color:lightblue;
+          border-radius: 5px;
+          font-size: medium;
+          font-weight: 100;
+         }
+         button:hover{
+          background-color: aliceblue;
+         }
+         /*logo bar */
+   .dash img{
+   margin-left: 600px;
+  
+    }
+   .dash{
+    background-color:rgb(137, 200, 244);
+   }
+      
+   
+   /*user img*/
+   #userIcon {
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      cursor: pointer;
+      transform: translate(-50%,-50%);
+      
+    }
+    #userIcon img{
+      height: 150px;
+      width: 100px;
+      
+      
+    }
+  /*modul*/
+    #optionsContainer {
+      display: none;
+      position: fixed;
+      top: 100px;
+      right: 10px;
+      background-color: #fff;
+    
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    #optionsContainer a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    #optionsContainer a:hover {
+      background-color: #f1f1f1;
+    }
+
+    #optionsContainer a.logout {
+      color: #d9534f; /* Red color for logout */
+    }
+
+    
+    /*nav*/
+    .header{
+    width:100%;
+    height:100vh;
+   
+   }
+   .nav-links h2{
+      background-color:lightskyblue;
+      height: 10px;
+      width: 4cm;
+      text-align: center;
+      padding: 5px;
+
+      color:black;
+      
+      
+         }
+      .sidebar{
+    width: 240px;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgb(55, 209, 255) 0%, rgb(14, 31, 111) 100.2%);
+    position: fixed;
+    top:0;
+    left:0;
+    padding: 20px 30px;
+    border-radius: 20px opx;
+   }
+   .logo{
+     margin: -40px;
+    
+   }
+   .logo-img{
+    width:200px;
+   }
+   .nav-links{
+    list-style: none;
+    position: relative;
+    
+   }
+   
+   .nav-links li{
+    padding: 10px 0;
+    margin:2px;
+    display: inline-flex;
+   }
+   .nav-links li a{
+      display: flex;
+      align-items: center;
+    color: aliceblue;
+    text-decoration: none;
+    padding: 10px 14px;
+   }
+   .nav-links li a i{
+      align-items: le;
+      font-size: 22px;
+      padding: 1px;
+      margin-right: 10px;
+     
+      
+
+   }
+   .nav-links li a:hover{
+  transform:scale(1);
+  opacity:1;
+  filter:blur(0);
+ 
+  color:#fff;
+}
+
+.nav-links li a:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#4169e1;
+  transform:scaleX(0);
+  z-index:-1;
+}
+
+.nav-links li a:hover:before{
+  transition:transform 0.1s;
+  transform:scaleX(1);
+}
+   
+
+
+</style>
+<script>
+   function toggleOptions() {
+      var optionsContainer = document.getElementById("optionsContainer");
+      optionsContainer.style.display = optionsContainer.style.display === "block" ? "none" : "block";
+    }
+
+    function showProfile() {
+      var profileModal = document.getElementById("profileModal");
+      profileModal.style.display = "block";
+    }
+
+    function closeModal() {
+      var profileModal = document.getElementById("profileModal");
+      profileModal.style.display = "none";
+    }
+
+    function logout() {
+      // Add logic for logout
+      alert("Logout");
+      location.replace("index.html");
+    }
+    function direct(){
+      location.replace("demo.html");
+    }
+    window.onload = function() {
+        // Check if the values exist in localStorage
+        if (localStorage.getItem("hoursCompleted")) {
+            // Update the value for Hour Completed
+            document.getElementById("hoursCompletedValue").textContent = localStorage.getItem("hoursCompleted");
+        }
+        if (localStorage.getItem("numVisits")) {
+            // Update the value for Number of Visits
+            document.getElementById("numVisitsValue").textContent = localStorage.getItem("numVisits");
+        }
+        if (localStorage.getItem("specialVisits")) {
+            // Update the value for Special Visit
+            document.getElementById("specialVisitsValue").textContent = localStorage.getItem("specialVisits");
+        }
+    };
+</script>

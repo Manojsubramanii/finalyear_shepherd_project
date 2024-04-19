@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <title>LOGIN</title>
+</head>
+<body>
+    <div class="login">
+        <img src="demo.jpg">
+        <h1 class="">SHEPHERD LOGIN</h1>
+    </div>
+    <form id="page" autocomplete="off" method="post">
+        <div>
+           
+            <input type="text" id="username" name="username" placeholder="register number">
+        </div>
+        <div>
+      
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <span class="spae"><a href="https://studerp.sjctni.edu/StudERP/login/ForgetPassWD.jsp">forgot password?</a></span>
+
+    <!-- Error message element -->
+    <script>
+        // Define user credentials
+        var users = [
+            { username: "admin", password: "admin123", role: "admin" },
+            { username: "21ucs522", password: "student123", role: "student" },
+            { username: "21ucs542", password: "student124", role: "student" }
+        ];
+    
+        // Function to handle form submission
+        document.getElementById("page").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Retrieve username and password values
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+    
+            // Check credentials against stored users
+            var authenticatedUser = users.find(function(user) {
+                return user.username === username && user.password === password;
+            });
+    
+            // If user found, log in and redirect
+            if (authenticatedUser) {
+                alert("Login successful as " + authenticatedUser.role);
+                // Redirect to dashboard or any other page based on user role
+                if (authenticatedUser.role === "admin") {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "dashboard.html";
+                }
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

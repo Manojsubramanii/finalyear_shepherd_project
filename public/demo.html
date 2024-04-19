@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accepted Data</title>
+    <style>
+        /* Style for better presentation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Accepted Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>DNO</th>
+                <th>Plan</th>
+                <th>Date of Visit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="accepted-data"></tbody>
+    </table>
+
+    <script>
+        // Retrieve existing accepted data from local storage
+        let acceptedData = JSON.parse(localStorage.getItem("acceptedData")) || [];
+
+        // Display accepted data in table format
+        const displayAcceptedData = () => {
+            const acceptedDataBody = document.getElementById("accepted-data");
+            acceptedDataBody.innerHTML = ""; // Clear existing table data
+
+            if (acceptedData.length > 0) {
+                acceptedData.forEach(data => {
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <td>${data.name}</td>
+                        <td>${data.dno}</td>
+                        <td>${data.plan}</td>
+                        <td>${data.dateOfVisit}</td>
+                        <td><button onclick="openReportForm()">Report Form</button></td> <!-- Add button for Report Form -->
+                    `;
+                    acceptedDataBody.appendChild(newRow);
+                });
+            } else {
+                // If no accepted data found in local storage
+                acceptedDataBody.innerHTML = "<tr><td colspan='4'>No accepted data found.</td></tr>";
+            }
+        };
+
+        // Call the function to initially display the accepted data
+        displayAcceptedData();
+
+        // Add event listener to handle new accepted data
+        window.addEventListener("storage", () => {
+            acceptedData = JSON.parse(localStorage.getItem("acceptedData")) || [];
+            displayAcceptedData();
+        });
+        const openReportForm = () => {
+            // Implement the logic to open the report form here
+            alert("Opening report form...");
+            window.location.href = "report_form.html";
+        }
+    </script>
+</body>
+</html>

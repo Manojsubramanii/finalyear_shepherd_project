@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <!-- Add your CSS links here -->
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="header">
+        <div class="sidebar">
+            <a href="#" class="logo">
+                <img src="logo.png" class="logo-img" alt="Logo">
+            </a>
+            <div class="profile">
+                <a href="https://www.sjctni.edu/Shepherd/index.jsp?id=1&bredcom=Home%20|%20Services%20|%20Shepherd">ABOUT SHEPHERD</a>
+            </div>
+            <strong>___________________</strong>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fa fa-home" aria-hidden="true"></i><p>Dashboard</p></a></li>
+                <li><a href="info.html"><i class="fa fa-info" aria-hidden="true"></i><p>Information</p></a></li>
+                <li><a href="planform.html"><i class="fa fa-location-arrow" aria-hidden="true"></i><p>Planform</p></a></li>
+                <li><a href="feedback.html"><i class="fa fa-comments" aria-hidden="true"></i><p>Feedback</p></a></li>
+            </ul>
+            <div class="active"></div>
+        </div>
+        <div class="bg">
+            <div class="dash">
+                <img src="demo4.jpg" alt="Dashboard Image">
+            </div>
+            <div class="info">
+                <form id="feedbackForm">
+                    <label for="category">Select Category:</label><br>
+                    <select id="category" name="category">
+                        <option value="suggestion">Suggestion</option>
+                        <option value="complaint">Complaint</option>
+                    </select><br>
+                    <label for="feedback">Your Feedback:</label><br>
+                    <textarea id="feedback" name="feedback" required></textarea><br>
+                    <button type="submit">Submit</button><br>
+                    <div id="feedbackMessage" style="display: none;"><h2></h2></div>
+                </form>
+            </div>
+        </div>
+        <div id="userIcon">
+            <img src="demo12.png" alt="User Icon" width="60" height="100" onclick="toggleOptions()">
+            <div id="optionsContainer">
+                <a href="#" class="logout" onclick="logout()">Logout</a>
+            </div>
+        </div>
+        <div id="profileModal">
+            <span id="closeModal" onclick="closeModal()">&times;</span>
+            <!-- Add user details content here -->
+        </div>
+    </div>
+    <!-- Add your Firebase scripts here -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnvSdXK6SaQzMkEx4AWVCuEmbxHM6aSSg",
+    authDomain: "finalyear-ece3f.firebaseapp.com",
+    databaseURL: "https://finalyear-ece3f-default-rtdb.firebaseio.com",
+    projectId: "finalyear-ece3f",
+    storageBucket: "finalyear-ece3f.appspot.com",
+    messagingSenderId: "852918031885",
+    appId: "1:852918031885:web:815ff21e162cbf6f9ae744",
+    measurementId: "G-MML62J6ZLN"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Reference to the feedbacks node in the database
+        const feedbacksRef = ref(getDatabase(app), 'feedbacks');
+
+        // Function to submit form and push data to the database
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const category = document.getElementById("category").value;
+            const feedback = document.getElementById("feedback").value;
+
+            // Push data to the database
+            push(feedbacksRef, {
+                category: category,
+                feedback: feedback
+            }).then(() => {
+                // Reset the form
+                document.getElementById("feedbackForm").reset();
+                // Show success message
+                document.getElementById("feedbackMessage").innerHTML = "<h2>Thank you for your feedback!</h2>";
+                document.getElementById("feedbackMessage").style.display = "block";
+                // Redirect to feedback display page if needed
+                // window.location.href = "feedbackDisplay.html";
+            }).catch((error) => {
+                console.error("Error adding feedback: ", error);
+            });
+        });
+    </script>
+</body>
+</html>
+<style>
+   *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'poppins',sans-serif;
+   
+    
+   }
+   .bg{
+    background-color:   rgb(232, 246, 250);
+    height:100%;
+   }
+   .info p{
+      padding: 30px;
+   }
+     
+ 
+.info form{
+   background-color:rgb(232, 246, 250);
+   text-align:center ;
+   padding: 50px;
+   padding-right: 10px;
+   font-size: larger;
+
+}
+#category{
+   margin-right: 500px;
+   padding: 5px;
+}
+
+label {
+            display: block;
+            margin-top: 5px;
+            padding-right: 500px;
+        }
+        
+
+.info textarea{
+   width: 50%;
+   height: 300px;
+   
+}
+ button{
+   height: 40px;
+   padding: 10px;
+
+}
+
+  
+input[type="submit"] {
+            margin-top: 10px;
+            padding: 20px 40px;
+            background-color:#4CAF50;
+            color:black;
+            border: none;
+            font-size: larger;
+            font-weight: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        
+}
+
+ /*logo bar */
+ .dash img{
+   margin-left: 600px;
+  
+    }
+   .dash{
+    background-color:rgb(137, 200, 244);
+   }
+      
+   
+   /*user img*/
+   #userIcon {
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      cursor: pointer;
+      transform: translate(-50%,-50%);
+      
+    }
+    #userIcon img{
+      height: 150px;
+      width: 100px;
+      
+      
+    }
+  /*modul*/
+    #optionsContainer {
+      display: none;
+      position: fixed;
+      top: 100px;
+      right: 10px;
+      background-color: #fff;
+    
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    #optionsContainer a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    #optionsContainer a:hover {
+      background-color: #f1f1f1;
+    }
+
+    #optionsContainer a.logout {
+      color: #d9534f; /* Red color for logout */
+    }
+
+    
+    /*nav*/
+    .header{
+    width:100%;
+    height:100vh;
+   
+   }
+   .nav-links h2{
+      background-color:lightskyblue;
+      height: 10px;
+      width: 4cm;
+      text-align: center;
+      padding: 5px;
+
+      color:black;
+      
+      
+         }
+      .sidebar{
+    width: 240px;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgb(55, 209, 255) 0%, rgb(14, 31, 111) 100.2%);
+    position: fixed;
+    top:0;
+    left:0;
+    padding: 20px 30px;
+    border-radius: 20px opx;
+   }
+   .logo{
+     margin: -40px;
+    
+   }
+   .logo-img{
+    width:200px;
+   }
+   .nav-links{
+    list-style: none;
+    position: relative;
+    
+   }
+   
+   .nav-links li{
+    padding: 10px 0;
+    margin:2px;
+    display: inline-flex;
+   }
+   .nav-links li a{
+      display: flex;
+      align-items: center;
+    color: aliceblue;
+    text-decoration: none;
+    padding: 10px 14px;
+   }
+   .nav-links li a i{
+      align-items: le;
+      font-size: 22px;
+      padding: 1px;
+      margin-right: 10px;
+     
+      
+
+   }
+   .nav-links li a:hover{
+  transform:scale(1);
+  opacity:1;
+  filter:blur(0);
+ 
+  color:#fff;
+}
+
+.nav-links li a:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#4169e1;
+  transform:scaleX(0);
+  z-index:-1;
+}
+
+.nav-links li a:hover:before{
+  transition:transform 0.1s;
+  transform:scaleX(1);
+}
+   
+</style>
