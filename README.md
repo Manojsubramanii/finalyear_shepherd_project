@@ -37,9 +37,9 @@ This platform is built to **digitize and simplify** all the manual workflows inv
 | Layer         | Technology             |
 |---------------|-------------------------|
 | 🌐 Frontend   | HTML5, CSS3, JavaScript |
-| 🔙 Backend    | PHP (with XAMPP)        |
-| 🗄️ Database   | MySQL                   |
-| 📱 Optional   | React Native (for mobile access) |
+| 🔙 Backend    | Firebase                |
+| 🗄️ Database   | Firebase cloud          |
+
 
 ---
 
@@ -48,7 +48,7 @@ This platform is built to **digitize and simplify** all the manual workflows inv
 > Use these for testing purposes only. Replace with real credentials in production.
 
 ### 👨‍🎓 Student Login
-- **Username**: `student001`
+- **Username**: `21ucs522`
 - **Password**: `student123`
 
 ### 👨‍🏫 Admin Login
@@ -56,22 +56,12 @@ This platform is built to **digitize and simplify** all the manual workflows inv
 - **Password**: `admin123`
 
 ---
+## 🖼️ UI Preview
 
-## 🖼️ Screenshots
+🚧 **Note**: Screenshots are currently not available and the website is not fully functional at the moment.  
+However, you can still **view the user interface** and explore the layout and structure by browsing the project files in the repository.
 
-> *(Upload screenshots in your repo and replace the links below with actual paths)*
-
-### 🔹 Homepage
-![Homepage](screenshots/homepage.png)
-
-### 🔹 Student Dashboard
-![Dashboard](screenshots/student_dashboard.png)
-
-### 🔹 Report Upload Page
-![Report Upload]()
-
-### 🔹 Admin Panel
-![Admin Panel](screenshots/admin_panel.png)
+🔧 We're working on getting a live demo and visuals uploaded soon!
 
 ---
 
